@@ -1,0 +1,33 @@
+﻿@*/* Date: Jan 30, 2020
+    * Author: Brian Appleton
+    *
+    * Thread Project #2
+    *
+    * generic error page with text that can be passed from the controller through the viewbag
+    *
+    *
+    */*@
+
+@{
+    ViewBag.Title = "Not Found";
+}
+
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-12">
+        <h1>
+            @ViewBag.Error
+            <br />
+            <small class="text-center">
+                @Html.ActionLink((string)ViewBag.BackText, (string)ViewBag.BackActionName, (string)ViewBag.BackControllerName)
+            </small>
+        </h1>
+
+    </div>
+</div>
+
+
+
+

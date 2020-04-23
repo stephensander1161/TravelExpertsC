@@ -1,0 +1,29 @@
+﻿/* Date: Jan 30, 2020
+ * Author: Brian Appleton
+ * 
+ * Thread Project #2
+ * 
+ * this style sheet is for the booking details view
+ *
+ *
+ */
+
+div.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+div.calendar {
+    width:6.5rem;
+}
+div.calendar-body {
+    height: 5rem;
+}
+.person {
+    width:35px;
+    height: 35px;
+}
+
+@media only screen and (max-width: 680px) {
+    body {
+        background-color: lightblue;
+    }
+}

@@ -1,0 +1,25 @@
+WHO DID WHAT
+
+BRIAN
+-PackageManager & MainApp Project (App)
+-->DBConnector Project --> Package.cs/PackageDB.cs
+
+-Booking Details Page (Website)
+--> BookingDetailsController/BookingDetailsView
+--> Entity DB Setup / TravelExpertsModel.tt modifications --> Booking.cs/BookingDetail.cs/Product.cs/fee.cs
+
+MO
+-Supplier Manager Project (App)
+-Login/Register (Website)
+
+STEPHEN
+-ProductManager Project (App)
+----->about half of supplierDB class and some other db sql statements
+-User Profile/Update Profile (Website)
+----->some statements on the customersController 
+----->the updatecustomers class 
+----->the updatecustomers view
+
+CHRIS
+-bootstrap, themes, look and layout off both app and website
+- Bookings Page (Website)

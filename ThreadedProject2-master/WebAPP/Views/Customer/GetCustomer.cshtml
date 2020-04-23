@@ -1,0 +1,125 @@
+﻿@*Author Stephen Sander (copied and pasted majority of code from Mo's register page')*@
+@model WebAPP.Models.UpdateCustomer
+@{
+    ViewBag.Title = "Profile";
+
+
+}
+
+@*Title of page*@
+<h1>@ViewBag.Title</h1>
+
+
+@using (Html.BeginForm("GetCustomer", "Customer", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @*Displays current username*@
+
+    <h3>
+      Hello,  @Session["Username"]
+    </h3>
+    @Html.AntiForgeryToken()
+    <h4>Update Your Information</h4>
+    <hr />
+    @*Validation Summary*@
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @*The following is the User fields to be updated*@
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustFirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustFirstName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustLastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustLastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustEmail, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustEmail, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustAddress, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustAddress, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustCity, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustCity, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustProv, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustProv, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustPostal, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustPostal, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustCountry, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustCountry, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustHomePhone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustHomePhone, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CustBusPhone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustBusPhone, new { @class = "form-control" })
+        </div>
+        @Html.TextBoxFor(m => m.UserName, new { style = "display: none;" })
+
+    </div>
+    @*Update Button*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Update" />
+        </div>
+    </div>
+}
+@*Change Password field
+
+@using (Html.BeginForm("CheckPassword", "Customer", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Reset your password</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Reset" />
+        </div>
+    </div>
+}*@

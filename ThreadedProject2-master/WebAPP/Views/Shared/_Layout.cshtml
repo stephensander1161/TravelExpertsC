@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+     @*Font Awesome Script*@
+    <script src="~/Scripts/1e67e92120.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", required: false)
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <a class="navbar-brand" href="#">
+            <img src="~/Content/Images/airplane.png"/>
+            Travel Experts
+        </a>
+        <button type="button" class="navbar-toggler bg-secondary" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-light" href="#">
+                    <i class="fas fa-search-location"></i>
+                    Browse
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" href="#">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Destinations
+                </a>
+            </li>
+            @if (Session["Username"] != null)
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="@Url.Action("Index", "Bookings")">
+                        <i class="fas fa-plane-departure"></i>
+                        Bookings
+                    </a>
+                </li>
+            }
+            <li class="nav-item">
+                <button class="btn btn-danger p-2" href="#"><i class="fas fa-tag"></i>&nbsp;Hot Deals!</button>
+            </li>
+
+        </ul>
+
+        @if (Session["Username"] != null)
+        {
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="@Url.Action("GetCustomer","Customer")">
+                        <i class="fas fa-user-circle"></i>
+                        Profile
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="@Url.Action("Logout","Customer")">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        }
+        else
+        {
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="@Url.Action("Register","Customer")">
+                        <i class="far fa-id-card"></i>
+                        Register
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="@Url.Action("Login","Customer")">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                </li>
+            </ul>
+        }
+
+    </div>
+
+
+
+    </nav>
+
+    <div class="container body-content">
+
+        @RenderBody()
+        <hr />
+        <footer>
+            <p><i class="fas fa-copyright"></i> @DateTime.Now.Year - Travel Experts</p>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+</body>
+</html>

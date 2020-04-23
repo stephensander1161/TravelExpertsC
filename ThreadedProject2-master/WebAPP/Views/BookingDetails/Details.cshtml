@@ -1,0 +1,263 @@
+﻿@*/* Date: Jan 30, 2020
+    * Author: Brian Appleton
+    *
+    * Thread Project #2
+    *
+    * this displays the booking details
+    *
+    *
+    */*@
+
+
+
+@model IEnumerable<WebAPP.BookingDetail>
+
+@{
+    ViewBag.Title = "Booking Details";
+
+}
+@section scripts {
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <link href="~/Content/BookingDetails.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+
+    </script>
+}
+<br />
+<br />
+<h1 class="text-center">
+    Booking #@Model.ElementAt(0).Booking.BookingNo
+</h1>
+<p>
+    @Html.ActionLink("Back to Bookings", "Index", "Bookings")
+</p>
+
+@foreach (var item in Model)
+{
+
+
+    <div class="card">
+        <div class="card-header bg-light">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="text-center">
+                        @item.Products_Suppliers.Product.ProdName
+                    </h3>
+                </div>
+                <div class="col-md-9">
+                    <a class="float-right text-secondary h6"><small>#@item.ItineraryNo</small></a>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <img src="~/Content/Images/@item.Products_Suppliers.Product.ImagePath" runat="server" class="img-fluid rounded float-left" />
+                </div>
+
+                <div class="col-md-3">
+
+                    @if (!String.IsNullOrEmpty(item.Class.ClassName) &&
+                        !String.IsNullOrWhiteSpace(item.Class.ClassName) &&
+                        item.Class.ClassName != "Not Applicable")
+                    {
+                        <h5 class="card-text">@item.Class.ClassName</h5>
+                    }
+                    @if (!String.IsNullOrEmpty(item.Description) &&
+                        !String.IsNullOrWhiteSpace(item.Description))
+                    {
+                        <a class="card-text"><b>Details</b> - @item.Description</a><br />
+                    }
+
+
+                    @if (!String.IsNullOrEmpty(item.Destination) &&
+                        !String.IsNullOrWhiteSpace(item.Destination))
+                    {
+                        <a class="card-text"><b>Location</b> - @item.Destination</a><br />
+                    }
+
+
+                    @if (item.Booking.TravelerCount.HasValue)
+                    {
+
+                        <a class="card-text font-weight-bold">Travelers</a><br />
+
+                        for (int i = 0; i < item.Booking.TravelerCount.Value; i++)
+                        {
+                            <img class="person" src="~/Content/Images/person.png" />
+                        }
+                    }
+                    <br />
+                </div>
+
+                @*Calendar Dates*@
+                <div class="col-md-6">
+                    <div class="Card-deck d-flex flex-row-reverse">
+
+                        <div class="card bg-light calendar">
+                            <div class="card-header bg-danger text-center text-light p-0 m-0">
+                                To
+                            </div>
+                            <div class="card-body text-center p-0 ">
+                                <h3 class="text-dark">
+                                    @item.TripEnd.Value.Day
+                                    <br /><small>@item.TripEnd.Value.ToString("MMM")</small>
+                                </h3>
+                            </div>
+                        </div>
+
+
+                        <div class=" float-xs-right float-md-right">&nbsp;&nbsp;</div>
+
+                        <div class="card bg-light calendar">
+                            <div class="card-header bg-danger text-center text-light p-0 m-0">
+                                From
+                            </div>
+                            <div class="card-body text-center p-0 ">
+                                <h3 class="text-dark">
+                                    @item.TripStart.Value.Day
+                                    <br /><small>@item.TripStart.Value.ToString("MMM")</small>
+                                </h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+}
+
+<br />
+
+@*Displays the product breakdown for the booking*@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center">Invoice Details</h2>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="text-center">
+                        
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ItineraryNo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Products_Suppliers.Product.ProdName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TripStart)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TripEnd)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BasePrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FeeTotal)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Quantity)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExtendedLineTotal)
+                                </th>
+
+
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                      
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItineraryNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Products_Suppliers.Product.ProdName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TripStart)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TripEnd)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.BasePrice)
+                                </td>
+                                <td>
+                                    @{
+                                        string fee = "";
+                                        if (item.Fee.FeeName != "No Charge")
+                                        {
+                                            fee = " " + item.Fee.FeeName + " and";
+                                        }
+
+                                    }
+                                    <a href="javascript:void(0);" data-toggle="popover" data-trigger="hover click"
+                                       data-content="@(fee) @Html.DisplayNameFor(model => model.AgencyCommission)">
+                                        @if (item.FeeTotal > 0)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.FeeTotal)
+                                        }
+                                    </a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExtendedLineTotal)
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        @*Displays the total chagres for the booking*@
+        <div class="row">
+            <div class="col-9">@*Placeholder*@</div>
+            <div class="col-3">
+                <dl class="row text-right">
+                    <dt class="col-sm-6"> @Html.DisplayNameFor(model => model.ExtendedFeeTotal)</dt>
+                    <dd class="col-sm-6">@Model.Sum(x => x.ExtendedFeeTotal).ToString("c")</dd>
+
+                    <dt class="col-sm-6">@Html.DisplayNameFor(model => model.ExtendedSubTotal)</dt>
+                    <dd class="col-sm-6"> @Model.Sum(x => x.ExtendedSubTotal).ToString("c")</dd>
+
+                    <dt class="col-sm-6">@Html.DisplayNameFor(model => model.ExtendedLineTotal)</dt>
+                    <dd class="col-sm-6">@Model.Sum(x => x.ExtendedLineTotal).ToString("c")</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<p>
+    @Html.ActionLink("Back to Bookings", "Index", "Bookings")
+</p>
